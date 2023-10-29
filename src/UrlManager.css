@@ -28,9 +28,21 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: block;
+  display: inline-block; /* Change display to inline-block */
   margin-top: 10px;
+  margin-right: 10px;
 }
+
+#current {
+  background-color: green;
+}
+
+/* Add a class for the button container */
+.button-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 
 table {
   width: 100%;

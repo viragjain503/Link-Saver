@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import React, { useState, useEffect } from 'react';
 import './UrlManager.css'; // Import the external CSS file
 import { CopyToClipboard } from 'react-copy-to-clipboard'; // Import the copy-to-clipboard component
@@ -31,6 +32,17 @@ function UrlManager() {
       handleSaveUrl();
     }
   };
+  
+  const useCurrent = () => {
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+      
+      if(tabs[0]?.url){
+        setUrlInput(tabs[0].url);
+        handleSaveUrl();
+      }
+      // use `url` here inside the callback because it's asynchronous!
+  });
+  };
 
   const handleDeleteUrl = (index: number) => {
     const updatedUrls = savedUrls.filter((_, i) => i !== index);
@@ -59,7 +71,14 @@ function UrlManager() {
           onChange={handleUrlChange}
           onKeyPress={handleKeyPress}
         />
-        <button onClick={handleSaveUrl}>Save</button>
+        <div>
+          <div className="button-container">
+            <button onClick={handleSaveUrl}>Save</button>
+          </div>
+          <div className="button-container">
+            <button onClick={useCurrent} id='current'>Use Current</button>
+          </div>
+        </div>
       </div>
       <table>
         <thead>
