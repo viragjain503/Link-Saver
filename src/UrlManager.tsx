@@ -32,6 +32,14 @@ function UrlManager() {
     }
   };
 
+  const handleDeleteUrl = (index: number) => {
+    const updatedUrls = savedUrls.filter((_, i) => i !== index);
+    chrome.storage.local.set({ "url": updatedUrls }, function () {
+      console.log("Deleted data");
+    });
+    setSavedUrls(updatedUrls);
+  };
+
   useEffect(() => {
     chrome.storage.local.get(["url"], function (obj) {
       if (obj.url) {
@@ -57,7 +65,8 @@ function UrlManager() {
         <thead>
           <tr>
             <th>URL</th>
-            <th>Copy</th> {/* Add a new column for the copy button */}
+            <th>Copy</th>
+            <th>Delete</th> {/* Add a new column for the delete icon */}
           </tr>
         </thead>
         <tbody>
@@ -70,8 +79,17 @@ function UrlManager() {
               </td>
               <td>
                 <CopyToClipboard text={url}>
-                  <button>Copy</button>
+                  <i className="material-icons" style={{ cursor: 'pointer', color: 'green' }}>Copy</i>
                 </CopyToClipboard>
+              </td>
+              <td>
+                <i
+                  className="material-icons"
+                  onClick={() => handleDeleteUrl(index)}
+                  style={{ cursor: 'pointer', color: 'red' }}
+                >
+                  delete
+                </i>
               </td>
             </tr>
           ))}
