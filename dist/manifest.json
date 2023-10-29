@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "name": "Link Saver",
+    "description": "Save your links which you paste everywhere.",
+    "action": {
+        "default_popup": "js/index.html",
+        "default_title": "Link Saver"
+    },
+    "permissions": [
+        "storage"
+    ]
+}
