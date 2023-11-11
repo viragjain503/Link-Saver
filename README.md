@@ -9,6 +9,7 @@
 Chrome extension for saving links which we copy paste infinite times in a day.  
 ### Demo 
 Link - https://chromewebstore.google.com/detail/link-saver/ggijaehnmdkbmbkfmginifcfbgfijbpo
+
 ![Link Saver](https://github.com/viragjain503/Link-Saver/blob/main/src/link-saver.png)
 ### How to use this extension ? 
 
